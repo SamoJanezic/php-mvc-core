@@ -1,0 +1,15 @@
+{
+    "name": "sj/php-mvc-core",
+    "autoload": {
+        "psr-4": {
+            "Sj\\PhpMvcCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "samo",
+            "email": "janezic.orion@gmail.com"
+        }
+    ],
+    "require": {}
+}
