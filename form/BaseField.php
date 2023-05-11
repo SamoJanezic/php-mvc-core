@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core\form;
+namespace samojanezic\phpmvc\form;
 
-use app\core\Model;
+use samojanezic\phpmvc\Model;
 
 
 

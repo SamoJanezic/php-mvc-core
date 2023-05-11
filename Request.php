@@ -1,6 +1,6 @@
 <?php
 
-namespace app\core;
+namespace samojanezic\phpmvc;
 
 /**
  * Summary of Request

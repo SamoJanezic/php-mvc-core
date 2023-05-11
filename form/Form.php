@@ -1,8 +1,8 @@
 <?php
 
-namespace app\core\form;
-use app\core\Model;
-use app\core\form\InputField;
+namespace samojanezic\phpmvc\form;
+use samojanezic\phpmvc\Model;
+use samojanezic\phpmvc\form\InputField;
 
 class Form
 {

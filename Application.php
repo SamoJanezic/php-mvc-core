@@ -1,7 +1,7 @@
 <?php
-namespace app\core;
+namespace samojanezic\phpmvc;
 
-use app\core\db\Database;
+use samojanezic\phpmvc\db\Database;
 
 
 class Application
@@ -54,12 +54,12 @@ class Application
 		
 	}
 
-	public function getController(): \app\core\Controller
+	public function getController(): \samojanezic\phpmvc\Controller
 	{
 		return $this->controller;
 	}
 
-	public function setController(\app\core\Controller $controller): void
+	public function setController(\samojanezic\phpmvc\Controller $controller): void
 	{
 		$this->controller = $controller;
 	}

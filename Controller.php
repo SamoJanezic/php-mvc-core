@@ -1,7 +1,7 @@
 <?php
 
-namespace app\core;
-use app\core\middlewares\BaseMiddleware;
+namespace samojanezic\phpmvc;
+use samojanezic\phpmvc\middlewares\BaseMiddleware;
 
 
 class Controller

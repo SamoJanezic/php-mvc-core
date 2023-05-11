@@ -2,7 +2,7 @@
     "name": "samojanezic/php-mvc-core",
     "autoload": {
         "psr-4": {
-            "Sj\\PhpMvcCore\\": "src/"
+            "samojanezic\\phpmvc\\": "."
         }
     },
     "authors": [
@@ -12,4 +12,5 @@
         }
     ],
     "require": {}
+    
 }

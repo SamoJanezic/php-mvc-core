@@ -1,7 +1,7 @@
 <?php
 
-namespace app\core;
-use app\core\exception\NotFoundException;
+namespace samojanezic\phpmvc;
+use samojanezic\phpmvc\exception\NotFoundException;
 
 class Router
 {

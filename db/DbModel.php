@@ -1,9 +1,9 @@
 <?php
 
-namespace app\core\db;
+namespace samojanezic\phpmvc\db;
 
-use app\core\Model;
-use app\core\Application;
+use samojanezic\phpmvc\Model;
+use samojanezic\phpmvc\Application;
 
 abstract class DbModel extends Model
 {
