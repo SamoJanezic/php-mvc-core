@@ -18,7 +18,6 @@ class Session
 
     public function setFlash($key, $message)
     {
-        var_dump($key, $message);
         $_SESSION[self::FLASH_KEY][$key] = [
             'remove' => false,
             'value' => $message

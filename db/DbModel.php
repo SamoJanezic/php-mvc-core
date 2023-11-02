@@ -4,6 +4,7 @@ namespace samojanezic\phpmvc\db;
 
 use samojanezic\phpmvc\Model;
 use samojanezic\phpmvc\Application;
+use PDO;
 
 abstract class DbModel extends Model
 {
@@ -23,8 +24,8 @@ abstract class DbModel extends Model
 		foreach ($attributes as $attribute) {
 			$statement->bindValue(":$attribute", $this->{$attribute});
 		}
-
 		$statement->execute();
+
 		return true;
 	}
 
@@ -33,7 +34,8 @@ abstract class DbModel extends Model
 		return Application::$app->db->pdo->prepare($sql);
 	}
 
-	public static function findOne($where) {
+	public static function findOne($where) 
+	{
 		$tableName = static::tableName();
 		$attributes = array_keys($where);
 		$sql = implode("AND ", array_map(fn($attr) => "$attr = :$attr", $attributes));
@@ -44,5 +46,20 @@ abstract class DbModel extends Model
 
 		$statement->execute();
 		return $statement->fetchObject(static::class);
+	}
+
+	public static function showAll()
+	{
+		$statement = self::prepare("SELECT * FROM posts");
+		$statement->execute();
+		return $statement->fetchAll(PDO::FETCH_OBJ);
+	}
+
+	public static function showPublisher($userID)
+	{
+		$statement = self::prepare("SELECT firstname, lastname FROM users WHERE id=$userID");
+		$statement->execute();
+		$result = $statement->fetch(PDO::FETCH_ASSOC);
+		return $result['firstname'] . ' ' . $result['lastname'];
 	}
 }

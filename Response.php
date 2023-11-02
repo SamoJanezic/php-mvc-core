@@ -4,13 +4,13 @@ namespace samojanezic\phpmvc;
 
 class Response
 {
-	public function setStatusCode(int $code)
+	public function setStatusCode($code)
 	{
 		http_response_code($code);
 	}
 
-	public function redirect(string $string)
+	public function redirect($url)
 	{
-		header('Location: '.$string);
+		header('Location: '.$url);
 	}
 }
