@@ -34,7 +34,7 @@ abstract class DbModel extends Model
 		return Application::$app->db->pdo->prepare($sql);
 	}
 
-	public static function findOne($where) 
+	public static function findOne($where)
 	{
 		$tableName = static::tableName();
 		$attributes = array_keys($where);
@@ -48,9 +48,14 @@ abstract class DbModel extends Model
 		return $statement->fetchObject(static::class);
 	}
 
-	public static function showAll()
+	public static function showAll($id)
 	{
-		$statement = self::prepare("SELECT * FROM posts");
+		$tableName = static::tableName();
+		if($id) {
+			$statement = self::prepare("SELECT * FROM $tableName WHERE user_id=$id");
+		} else {
+			$statement = self::prepare("SELECT * FROM $tableName");
+		}
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_OBJ);
 	}
