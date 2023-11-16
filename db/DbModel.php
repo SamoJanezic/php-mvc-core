@@ -67,4 +67,11 @@ abstract class DbModel extends Model
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
 		return $result['firstname'] . ' ' . $result['lastname'];
 	}
+
+	public static function deleteRow(int $id)
+	{
+		$tableName = static::tableName();
+		$statement = self::prepare("DELETE FROM $tableName WHERE id = $id");
+		$statement->execute();
+	}
 }
