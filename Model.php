@@ -16,7 +16,7 @@ abstract class Model
 	public function getLabel($attribute) {
 		return $this->labels()[$attribute] ?? $attribute;
 	}
-	
+
 	public function loadData($data)
 	{
 		foreach ($data as $key => $value) {

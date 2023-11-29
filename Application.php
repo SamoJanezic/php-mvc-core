@@ -35,7 +35,7 @@ class Application
 		$this->view = new View();
 
 		$this->db = new Database($config['db']);
-		
+
 		$primaryValue = $this->session->get('user');
 		if ($primaryValue) {
 			$primaryKey = $this->userClass::primaryKey();
@@ -43,7 +43,6 @@ class Application
 		} else {
 			$this->user = null;
 		}
-		
 	}
 	public function run()
 	{
@@ -56,7 +55,6 @@ class Application
 				'exception' => $e
 			]);
 		}
-		
 	}
 
 	public function getController(): \samojanezic\phpmvc\Controller
