@@ -48,11 +48,11 @@ abstract class DbModel extends Model
 		return $statement->fetchObject(static::class);
 	}
 
-	public static function showAll($id)
+	public static function showAll($column, $id)
 	{
 		$tableName = static::tableName();
-		if($id) {
-			$statement = self::prepare("SELECT * FROM $tableName WHERE user_id=$id");
+		if($column && $id) {
+			$statement = self::prepare("SELECT * FROM $tableName WHERE $column=$id");
 		} else {
 			$statement = self::prepare("SELECT * FROM $tableName");
 		}
