@@ -52,10 +52,12 @@ abstract class DbModel extends Model
 	{
 		$tableName = static::tableName();
 		if($column && $id) {
-			$statement = self::prepare("SELECT * FROM $tableName WHERE $column=$id");
+			$statement = self::prepare("SELECT * FROM $tableName WHERE $column='$id'");
 		} else {
 			$statement = self::prepare("SELECT * FROM $tableName");
 		}
+		// var_dump($statement);
+		// die;
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_OBJ);
 	}
