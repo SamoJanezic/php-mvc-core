@@ -54,10 +54,8 @@ abstract class DbModel extends Model
 		if($column && $id) {
 			$statement = self::prepare("SELECT * FROM $tableName WHERE $column='$id'");
 		} else {
-			$statement = self::prepare("SELECT * FROM $tableName");
+			$statement = self::prepare("SELECT * FROM $tableName ORDER BY created_on DESC");
 		}
-		// var_dump($statement);
-		// die;
 		$statement->execute();
 		return $statement->fetchAll(PDO::FETCH_OBJ);
 	}
