@@ -74,4 +74,14 @@ abstract class DbModel extends Model
 		$statement = self::prepare("DELETE FROM $tableName WHERE id = $id");
 		$statement->execute();
 	}
+
+	public static function editRow($id, $title, $content, $image){
+		$tableName = static::tableName();
+		$statement = self::prepare("UPDATE $tableName
+									SET title = '$title', content = '$content', image = '$image'
+									WHERE id = $id");
+		// var_dump($statement);
+		// die;
+		$statement->execute();
+	}
 }
