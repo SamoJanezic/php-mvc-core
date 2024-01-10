@@ -62,10 +62,10 @@ abstract class DbModel extends Model
 
 	public static function showPublisher($userID)
 	{
-		$statement = self::prepare("SELECT firstname, lastname FROM users WHERE id=$userID");
+		$statement = self::prepare("SELECT firstname, lastname, user_pic FROM users WHERE id=$userID");
 		$statement->execute();
 		$result = $statement->fetch(PDO::FETCH_ASSOC);
-		return $result['firstname'] . ' ' . $result['lastname'];
+		return $result;
 	}
 
 	public static function deleteRow(int $id)
@@ -80,8 +80,6 @@ abstract class DbModel extends Model
 		$statement = self::prepare("UPDATE $tableName
 									SET title = '$title', content = '$content', image = '$image'
 									WHERE id = $id");
-		// var_dump($statement);
-		// die;
 		$statement->execute();
 	}
 }
