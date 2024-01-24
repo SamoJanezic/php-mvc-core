@@ -36,7 +36,7 @@ class InputField extends BaseField
 
   public function renderInput(): string
   {
-    return sprintf('<input type="%s" name="%s" value="%s" class="form-control%s">',
+    return sprintf('<input type="%s" name="%s" value="%s" class="form-control%s" accept="image/*">',
       $this->type,
       $this->attribute,
       $this->model->{$this->attribute},

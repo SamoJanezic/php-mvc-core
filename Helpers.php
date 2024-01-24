@@ -7,7 +7,7 @@ class Helpers
 
     public static function removeSpecialChar($str)
     {
-        $result = str_ireplace( array( '\'', '"',',' , ';', '<', '>' ), '', $str);
+        $result = str_ireplace( array( '\'', '"',',' , ';', '<', '>', '.' ), '', $str);
         return strtolower($result);
     }
     public static function getUniqueName($str, $l) :string
@@ -23,6 +23,10 @@ class Helpers
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         $baseName = basename($target_file, $imageFileType);
 
+        if(!is_dir($path)) {
+            mkdir($path);
+        }
+
         if(isset($_POST["submit"])) {
             $check = getimagesize($_FILES[$name]["tmp_name"]);
             if($check === false) {
@@ -30,11 +34,11 @@ class Helpers
             }
         }
 
-        if ($_FILES[$name]["size"] > 5000000) {
+        if($_FILES[$name]["size"] > 5000000) {
             return "Sorry, your file is too large.";
         }
 
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "webp") {
             return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         }
 
