@@ -4,6 +4,7 @@ namespace samojanezic\phpmvc;
 
 class Helpers
 {
+    public int $fileSize = 5000000;
 
     public static function removeSpecialChar($str)
     {
@@ -27,21 +28,6 @@ class Helpers
             mkdir($path);
         }
 
-        if(isset($_POST["submit"])) {
-            $check = getimagesize($_FILES[$name]["tmp_name"]);
-            if($check === false) {
-                return "File is not an image.";
-            }
-        }
-
-        if($_FILES[$name]["size"] > 5000000) {
-            return "Sorry, your file is too large.";
-        }
-
-        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "webp") {
-            return "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        }
-
         $uniqueName = self::getUniqueName(substr($baseName, 0, 8), 8);
         $fullName = $target_dir . $uniqueName . '.' . $imageFileType;
 
@@ -49,4 +35,31 @@ class Helpers
 
         return $fullName;
     }
+
+    public static function isImage() {
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        return $check;
+    }
+
+    public static function checkExt() {
+        $imageType = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+        $target_file = basename($_FILES["image"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        var_dump($imageFileType);
+        if (in_array($imageFileType, $imageType)) {
+            var_dump('yes');
+            die;
+        } else {
+            var_dump('no');
+            die;
+        }
+    }
+
+    public static function checkSize() {
+        if($_FILES["image"]["size"] > 5000000) {
+            return "Sorry, your file is too large.";
+        }
+    }
+
+
 }
