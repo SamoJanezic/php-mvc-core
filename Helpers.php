@@ -11,10 +11,17 @@ class Helpers
         $result = str_ireplace( array( '\'', '"',',' , ';', '<', '>', '.' ), '', $str);
         return strtolower($result);
     }
+
     public static function getUniqueName($str, $l) :string
     {
         $clean = self::RemoveSpecialChar($str);
         return $clean . '-' . substr(md5(uniqid(mt_rand(), true)), 0, $l);
+    }
+
+    public static function fileIsGiven() {
+        if(basename($_FILES['image']["name"])) {
+            return true;
+        }
     }
 
     public static function uploadImage($name, $path) :string
