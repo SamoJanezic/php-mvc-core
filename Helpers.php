@@ -18,8 +18,8 @@ class Helpers
         return $clean . '-' . substr(md5(uniqid(mt_rand(), true)), 0, $l);
     }
 
-    public static function fileIsGiven() {
-        if(basename($_FILES['image']["name"])) {
+    public static function fileIsGiven($name) {
+        if(basename($_FILES[$name]["name"])) {
             return true;
         }
     }
