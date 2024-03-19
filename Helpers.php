@@ -1,10 +1,10 @@
-<?
+<?php
 
 namespace samojanezic\phpmvc;
 
 class Helpers
 {
-    public int $fileSize = 5000000;
+    public static string $error = '';
 
     public static function removeSpecialChar($str)
     {
@@ -45,28 +45,30 @@ class Helpers
 
     public static function isImage() {
         $check = getimagesize($_FILES["image"]["tmp_name"]);
-        return $check;
+        if(!$check) {
+            // array_push(self::$errors, 'File is not an image!');
+            self::$error = 'File is not an image!';
+        }
+        return true;
     }
 
     public static function checkExt() {
         $imageType = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
         $target_file = basename($_FILES["image"]["name"]);
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-        var_dump($imageFileType);
-        if (in_array($imageFileType, $imageType)) {
-            var_dump('yes');
-            die;
-        } else {
-            var_dump('no');
-            die;
+        if(!in_array($imageFileType, $imageType)) {
+            // array_push(self::$errors, 'Sorry, only jpg, jpeg, png, gif and webp supported');
+            self::$error = 'Sorry, only jpg, jpeg, png, gif and webp supported';
         }
+        return true;
     }
 
     public static function checkSize() {
-        if($_FILES["image"]["size"] > 5000000) {
-            return "Sorry, your file is too large.";
+        if($_FILES["image"]["size"] > 2500000) {
+            // array_push(self::$errors, "Sorry, your file is too large.");
+            self::$error = "Sorry, your file is too large.";
+
         }
+        return true;
     }
-
-
 }

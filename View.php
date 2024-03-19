@@ -2,7 +2,7 @@
 
 namespace samojanezic\phpmvc;
 
-class view
+class View
 {
     public string $title = '';
 

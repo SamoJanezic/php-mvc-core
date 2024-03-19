@@ -2,6 +2,7 @@
 
 namespace samojanezic\phpmvc;
 
+use samojanezic\phpmvc\Helpers;
 abstract class Model
 {
 	public const RULE_REQUIRED = 'required';
@@ -10,6 +11,7 @@ abstract class Model
 	public const RULE_MAX = 'max';
 	public const RULE_MATCH = 'match';
 	public const RULE_UNIQUE = 'unique';
+	public const RULE_ISIMAGE = 'isimage';
 
 	public array $errors = [];
 
@@ -66,6 +68,11 @@ abstract class Model
 						$this->addErrorForRule($attribute, self::RULE_UNIQUE, ['field' => $this->getLabel($attribute)]);
 					}
 				}
+				if ($ruleName === self::RULE_ISIMAGE) {
+					if (Helpers::$error) {
+						$this->addErrorForRule($attribute, self::RULE_ISIMAGE);
+					}
+				}
 			}
 		}
 
@@ -95,6 +102,7 @@ abstract class Model
 			self::RULE_MAX => 'Max length of this field must be {max}',
 			self::RULE_MATCH => 'Must match {match}',
 			self::RULE_UNIQUE => 'Record with this {field} already exists',
+			self::RULE_ISIMAGE => Helpers::$error
 		];
 	}
 
